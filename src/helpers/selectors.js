@@ -1,5 +1,5 @@
 
-export function getAppointmentsForDay(state, day) {
+function getAppointmentsForDay(state, day) {
   //... returns an array of appointments for that day
   const days = state.days.filter((dayName)  => dayName.name === day);
   const returnArr = [];
@@ -19,3 +19,18 @@ export function getAppointmentsForDay(state, day) {
   }
   return returnArr;
 }
+
+function getInterview (state, interview) {
+  // add the interviewer data(id name and avatar) insted of id only 
+  if (interview){
+    for ( const interviewerId in state.interviewers){
+      if (Number(interviewerId) === Number(interview.interviewer)){
+        interview.interviewer = state.interviewers[interviewerId];
+      }
+    
+    }
+  return interview;
+  }
+  return null
+}
+export {getAppointmentsForDay, getInterview}
