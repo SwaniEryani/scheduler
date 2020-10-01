@@ -57,8 +57,10 @@ export default function Application(props) {
   useEffect(() => {
     const daysURL = `http://localhost:8080/api/days`;
     axios.get(daysURL).then(response => {
-      setDays([...response.data])
-      console.log(response.data);
+      setDays([...response.data]);
+    }).catch((error) => {
+      // 404 need to be add 
+      console.log(error.response.status);
     });
   }, [days]);
   return (
