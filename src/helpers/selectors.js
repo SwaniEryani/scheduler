@@ -2,7 +2,7 @@
 function getAppointmentsForDay(state, day) {
   //... returns an array of appointments for that day
   const days = state.days.filter((dayName)  => dayName.name === day);
-  const returnArr = [];
+  let returnArr = [];
 
   if(days.length > 0){
     const appointmentsForDay = days[0].appointments;
@@ -10,7 +10,8 @@ function getAppointmentsForDay(state, day) {
       for(const appointment of appointmentsForDay){
         for (const appointments in state.appointments){
           if(Number(appointments) === appointment){
-            returnArr.push(state.appointments[appointments]);
+            // returnArr.push(state.appointments[appointments]);
+            returnArr = returnArr.concat([ state.appointments[appointments]]);
         }
         }
     }
@@ -21,7 +22,7 @@ function getAppointmentsForDay(state, day) {
 }
 
 function getInterview (state, interview) {
-  // add the interviewer data(id name and avatar) insted of id only 
+  // get the interviewer data(id name and avatar) insted of id only 
   if (interview){
     for ( const interviewerId in state.interviewers){
       if (Number(interviewerId) === Number(interview.interviewer)){
