@@ -16,7 +16,7 @@ export default function Form(props) {
 
   function cancel() {
     reset();
-    return props.onCancel;
+    props.onCancel();
   }
 
   return (
@@ -29,7 +29,7 @@ export default function Form(props) {
             name={name}
             type="text"
             placeholder="Enter Student Name"
-            value={name}
+            value={(name ? name: "")}
             onChange={(event) => setName(event.target.value)}
             
           />
@@ -43,7 +43,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick = {props.onSave(name , interviewer)}>Save</Button>
+          <Button confirm onClick = {props.onSave}>Save</Button>
         </section>
       </section>
     </main>
