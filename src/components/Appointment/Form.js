@@ -18,6 +18,14 @@ export default function Form(props) {
     reset();
     props.onCancel();
   }
+  function savenow (){
+    if(name || interviewer){
+      props.onSave(name,interviewer);
+    } 
+    console.log("name or interviewer is null")
+    
+  }
+
 
   return (
 
@@ -43,7 +51,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick = {props.onSave}>Save</Button>
+          <Button confirm onClick = {savenow}>Save</Button>
         </section>
       </section>
     </main>
