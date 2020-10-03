@@ -14,6 +14,8 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
+const DELETING = 'DELETING';
+const CONFIRM = 'CONFIRM';
 
 
 
@@ -31,6 +33,13 @@ function Appointment (props)  {
     props.bookInterview(props.id, interview)
       .then(() => { transition(SHOW) });
   }
+
+  function cancel(){
+  
+    transition(DELETING);
+    props.cancelInterview(props.id)
+      .then(()=> transition(EMPTY))
+  }
   
   return(
     // <article className="appointment"></article>
@@ -38,8 +47,10 @@ function Appointment (props)  {
       <Header time ={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={back} />}
-      {mode === SHOW && ( <Show student={props.interview.student} interviewer={props.interview.interviewer} /> )}
+      {mode === SHOW && ( <Show student={props.interview.student} interviewer={props.interview.interviewer} onDelete ={cancel}/> )}
       {mode === SAVING && <Status message ={"Saving"}/>}
+      {mode === DELETING && <Status message ={"Deleting"}/>}
+      
   
     </article>
   );
