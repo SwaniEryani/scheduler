@@ -10,12 +10,12 @@ export default function useVisualMode(initial) {
     setMode(newMode);
     if (replace){
       let newHistory = [...history];
-      // newHistory = newHistory.slice(0, -1);
-      // newHistory = [...newHistory, newMode];
+      newHistory = newHistory.slice(0, -1);
+      newHistory = [...newHistory, newMode];
       newHistory = newHistory.splice(newHistory.lenagth -1 ,1,newMode);
       setHistory(newHistory);
     }else {
-      setHistory([...history,newMode]);
+      setHistory(prev => ([...prev, newMode])) 
     }
   }
   
