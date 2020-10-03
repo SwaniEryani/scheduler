@@ -36,7 +36,7 @@ export default function Form(props) {
             className="appointment__create-input text--semi-bold"
             name={name}
             type="text"
-            placeholder="Enter Student Name"
+            placeholder={name ? name: "Enter Student Name"}
             value={(name ? name: "")}
             onChange={(event) => setName(event.target.value)}
             
