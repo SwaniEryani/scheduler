@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import Error from './Error';
 
 import "components/Appointment/styles.scss";
 
@@ -19,10 +20,11 @@ export default function Form(props) {
     props.onCancel();
   }
   function savenow (){
-    if(name || interviewer){
+    if(name && interviewer){
       props.onSave(name,interviewer);
     } 
-    console.log("name or interviewer is null")
+    // return(<Error message='Missing data,👎 Could not Save your appointment. Please try again later.👍' onClose={cancel()}/>)
+    
     
   }
 

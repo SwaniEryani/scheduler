@@ -43,14 +43,13 @@ function Appointment (props)  {
   }
 
   function removeInterview(){
-    if (mode === CONFIRM){
+  
+      transition(CONFIRM);
       transition(DELETING, true);
       props
         .cancelInterview(props.id)
         .then(() => transition(EMPTY))
         .catch(error => transition(ERROR_DELETE, true));
-    }
-    transition(CONFIRM);
   }
   
   return(

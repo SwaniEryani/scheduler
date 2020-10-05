@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import {  getInterviewersForDay } from "../helpers/selectors";
 
 export default function useApplicationData() {
   const setDay = (day) => {
@@ -11,9 +12,17 @@ export default function useApplicationData() {
       day: 'Monday',
       days: [],
       appointments: {},
-      interviewers: {}
+      interviewers: {},
     }
   );
+  const newSpots = currState => {
+    const state = { ...currState };
+    const dayObj = state.days.find(dayId => dayId.name === state.day);
+    const appointmentsForDay = dayObj.appointments;
+    const noAppointments = appointmentsForDay.filter(id => !state.appointments[id].interview)
+    dayObj.spots = noAppointments.length;
+    return state.days
+  }
 
   function bookInterview(id, interview) {
     const appointment = {
@@ -29,6 +38,7 @@ export default function useApplicationData() {
       .then((response) => {
         console.log(response)
         setState(prev => ({ ...prev, appointments }));
+        setState(prev => ({ ...prev, days: newSpots(prev) }))
       });
   }
   function cancelInterview(id) {
@@ -43,6 +53,7 @@ export default function useApplicationData() {
     return axios.delete(`/api/appointments/${id}`, appointment)
       .then(() => {
         setState(prev => ({ ...prev, appointments }));
+        setState(prev => ({ ...prev, days: newSpots(prev) }))
       })
   }
   useEffect(()=>{
@@ -57,6 +68,10 @@ export default function useApplicationData() {
         console.log(err)
       })
   }, []);
+
   
-  return { setDay, state, setState, bookInterview, cancelInterview}
+    
+  
+
+  return { setDay, state, setState, bookInterview, cancelInterview }
 }
