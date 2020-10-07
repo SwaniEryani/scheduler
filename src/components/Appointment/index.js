@@ -44,12 +44,14 @@ function Appointment (props)  {
 
   function removeInterview(){
   
-      transition(CONFIRM);
+    if (mode === CONFIRM) {
       transition(DELETING, true);
-      props
-        .cancelInterview(props.id)
+      props.cancelInterview(props.id)
         .then(() => transition(EMPTY))
-        .catch(error => transition(ERROR_DELETE, true));
+        .catch(err => transition(ERROR_DELETE, true));
+    } else {
+      transition(CONFIRM);
+    }
   }
   
   return(
@@ -61,7 +63,7 @@ function Appointment (props)  {
       {mode === SHOW && ( <Show student={props.interview.student} interviewer={props.interview.interviewer} onDelete ={removeInterview} onEdit = {() =>transition(UPDATE)}/> )}
       {mode === SAVING && <Status message ={"Saving"}/>}
       {mode === DELETING && <Status message ={"Deleting"}/>}
-      {mode === CONFIRM && <Confirm onConfirm={removeInterview} onCancel ={back}/>}
+      {mode === CONFIRM && <Confirm message = {"Are you sure you would like to delete?"}onConfirm={removeInterview} onCancel ={back}/>}
       {mode === UPDATE && <Form name = {props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} onSave={save} onCancel={back}/>}
       {mode === ERROR_DELETE && <Error message='Something went wrong,👎 Could not delete your appointment. Please try again later.👍' onClose={back}/>}
       {mode === ERROR_SAVE && <Error message='Something went wrong,👎 Could not save your appointment. Please try again later.👍' onClose={back}/>}
