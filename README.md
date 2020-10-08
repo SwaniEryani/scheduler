@@ -34,11 +34,11 @@ Jest tests are used through the development of the project.
 Install dependencies with `npm install`.
 
 ## Screenshots
-!["add new appointment"]https://github.com/SwaniEryani/scheduler/blob/master/docs/AddAppointment.png?raw=true
-!["list of appoinyments"]https://github.com/SwaniEryani/scheduler/blob/master/docs/listOfAppointments.png?raw=true
-!["validation"]https://github.com/SwaniEryani/scheduler/blob/master/docs/Validation.png?raw=true
-!["Error_save"]https://github.com/SwaniEryani/scheduler/blob/master/docs/error_save.png?raw=true
-!["Error_delete"]https://github.com/SwaniEryani/scheduler/blob/master/docs/error_delete.png?raw=true
+!["add new appointment"](https://github.com/SwaniEryani/scheduler/blob/master/docs/AddAppointment.png)
+!["list of appoinyments"](https://github.com/SwaniEryani/scheduler/blob/master/docs/listOfAppointments.png)
+!["validation"](https://github.com/SwaniEryani/scheduler/blob/master/docs/Validation.png)
+!["Error_save"](https://github.com/SwaniEryani/scheduler/blob/master/docs/error_save.png)
+!["Error_delete"](https://github.com/SwaniEryani/scheduler/blob/master/docs/error_delete.png)
 ## Reference
 - React Documentation
 - Storybook Documentation
